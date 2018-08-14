@@ -9,18 +9,10 @@
     <link rel="stylesheet" href="bulma-timeline.min.css">
     <script defer src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"></script>
     <script src="jquery-3.3.1.min.js"></script>
+    <script src="index.js"></script>
 </head>
 
 <body>
-    <script>
-        $(document).ready(function() {
-            $(".navbar-burger").click(function() {
-                $(".navbar-burger").toggleClass("is-active");
-                $(".navbar-menu").toggleClass("is-active");
-
-            });
-        });
-    </script>
     <nav class="navbar" role="navigation" aria-label="main navigation">
         <div class="navbar-brand">
             <a class="navbar-item" href="">
@@ -34,10 +26,10 @@
         </div>
         <div class="navbar-menu">
             <div class="navbar-item">
-                <a class="navbar-item">Aluno</a>
+                <a class="navbar-item" id="botao-aluno">Aluno</a>
             </div>
             <div class="navbar-item">
-                <a class="navbar-item">Professor</a>
+                <a class="navbar-item" id="botao-professor">Professor</a>
             </div>
             <div class="navbar-item">
                 <a class="navbar-item">Contato</a>
@@ -164,20 +156,15 @@
                     <p class="title">
                         “There are two hard things in computer science: cache invalidation, naming things, and off-by-one errors.”
                     </p>
-                    <p class="subtitle">
-                        Jeff Atwood
+                    <p class="subtitle">Jeff Atwood
                     </p>
                 </div>
                 <footer class="card-footer">
                     <p class="card-footer-item">
-                        <span>
-                                      View on <a href="https://twitter.com/codinghorror/status/506010907021828096">Twitter</a>
-                                    </span>
+                        <span>View on <a href="https://twitter.com/codinghorror/status/506010907021828096">Twitter</a> </span>
                     </p>
                     <p class="card-footer-item">
-                        <span>
-                                      Share on <a href="#">Facebook</a>
-                                    </span>
+                        <span>Share on <a href="#">Facebook</a></span>
                     </p>
                 </footer>
             </div>
@@ -188,27 +175,27 @@
                     <p class="title">
                         “There are two hard things in computer science: cache invalidation, naming things, and off-by-one errors.”
                     </p>
-                    <p class="subtitle">
-                        Jeff Atwood
-                    </p>
+                    <p class="subtitle"> Jeff Atwood</p>
                 </div>
                 <footer class="card-footer">
                     <p class="card-footer-item">
-                        <span>
-                                      View on <a href="https://twitter.com/codinghorror/status/506010907021828096">Twitter</a>
-                                    </span>
+                        <span>View on <a href="https://twitter.com/codinghorror/status/506010907021828096">Twitter</a></span>
                     </p>
                     <p class="card-footer-item">
-                        <span>
-                                      Share on <a href="#">Facebook</a>
-                                    </span>
+                        <span> Share on <a href="#">Facebook</a></span>
                     </p>
                 </footer>
             </div>
         </div>
     </div>
 
-    <!-- -->
+    <div class="modal">
+        <div class="modal-background"></div>
+        <div class="modal-content">
+            <!-- Any other Bulma elements you want -->
+        </div>
+        <button class="modal-close is-large" aria-label="close"></button>
+    </div>
 </body>
 
 </html>
