@@ -752,3 +752,31 @@
     margin-left: 15px;
     margin-right: 15px;
 }
+
+.timeline{
+	margin-top: 50px;
+	margin-bottom: 100px;
+	
+}
+
+.navbar-brand, .navbar-menu{
+	background-color: #4ABDAC;
+}
+
+.hero, .imagemCapa{
+	height: 572px;
+}
+
+.hero-foot{
+	margin-top: -30px;
+	background-color: #F7B733;
+}
+
+.title, .subtitle{
+	text-align: center;
+}
+
+.disciplinas{
+	background-color:#FC4A1A;
+	padding-bottom:100px;
+}
