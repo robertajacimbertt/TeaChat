@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>TeaChat</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css">
+    <link rel="stylesheet" href="bulma-timeline.min.css">
     <script defer src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"></script>
     <script src="jquery-3.3.1.min.js"></script>
 </head>
@@ -13,10 +14,7 @@
 <body>
     <script>
         $(document).ready(function() {
-            // Check for click events on the navbar burger icon
             $(".navbar-burger").click(function() {
-
-                // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
                 $(".navbar-burger").toggleClass("is-active");
                 $(".navbar-menu").toggleClass("is-active");
 
@@ -47,44 +45,170 @@
         </div>
     </nav>
 
-    <div class="timeline">
+    <section class="hero is-primary is-medium is-space">
+        <img src="http://cliquetando.xpg.com.br/wp-content/uploads/2014/05/capas-face-dia-abra%C3%A7o-100.jpg">
+    </section>
+
+    <div class="timeline is-centered is-space">
         <header class="timeline-header">
-            <span class="tag is-medium is-primary">Start</span>
+            <span class="tag is-medium is-primary">Bem Vindo!</span>
         </header>
-        <div class="timeline-item">
-            <div class="timeline-marker is-primary"></div>
-            <div class="timeline-content">
-                <p class="heading">January 2016</p>
-                <p>Timeline content - Can include any HTML element</p>
-            </div>
-        </div>
-        <div class="timeline-item">
+        <div class="timeline-item is-warning">
             <div class="timeline-marker is-warning is-image is-32x32">
                 <img src="http://bulma.io/images/placeholders/32x32.png">
             </div>
             <div class="timeline-content">
-                <p class="heading">February 2016</p>
-                <p>Timeline content - Can include any HTML element</p>
+                <p class="heading heading-bigger">O que é o TeaChat?</p>
+                <p>O Teacher Chat é um projeto voluntário onde os professores doam seu tempo para ajudar alunos de baixa renda na hora de estudar.</p>
+                <p>Com ele é possivel tirar dúvidas e ensinar utilizando os recursos disponiveis na plataforma.</p>
             </div>
         </div>
-        <header class="timeline-header">
-            <span class="tag is-primary">2017</span>
-        </header>
-        <div class="timeline-item">
-            <div class="timeline-marker is-danger is-icon">
-                <i class="fa fa-plus"></i>
+        <div class="timeline-item is-warning">
+            <div class="timeline-marker is-warning is-image is-32x32">
+                <img src="http://bulma.io/images/placeholders/32x32.png">
             </div>
             <div class="timeline-content">
-                <p class="heading">March 2017</p>
-                <p>Timeline content - Can include any HTML element</p>
+                <p class="heading heading-bigger">Para os alunos</p>
+                <p>Escolha uma disciplina e um professor online para tirar dúvidas através de chats e video chamadas.</p>
+            </div>
+        </div>
+        <div class="timeline-item is-primary">
+            <div class="timeline-marker is-primary is-image is-32x32">
+                <img src="http://bulma.io/images/placeholders/32x32.png">
+            </div>
+            <div class="timeline-content">
+                <p class="heading heading-bigger">Para os professores</p>
+                <p>Doe tempo para ensinar quem precisa.</p>
+                <p> Existem muitos jovens que precisam do seu apoio.</p>
+                <p>Seja ativo nesta causa: Educação muda o mundo!</p>
+            </div>
+        </div>
+        <div class="timeline-item is-danger">
+            <div class="timeline-marker is-danger is-image is-32x32">
+                <img src="http://bulma.io/images/placeholders/32x32.png">
+            </div>
+            <div class="timeline-content">
+                <p class="heading heading-bigger">Como usar?</p>
+                <p>O acesso pode ser realizado atraves de qualquer dispositivo com acesso a internet.</p>
+                <p>* Basta escolher entre Ensinar ou Aprender.</p>
+                <p>* Fazer um cadastro e pronto! Já pode conversar.</p>
+            </div>
+        </div>
+        <div class="timeline-item is-danger">
+            <div class="timeline-marker is-danger is-image is-32x32">
+                <img src="http://bulma.io/images/placeholders/32x32.png">
+            </div>
+            <div class="timeline-content">
+                <p class="heading heading-bigger">Não pague nada ;)</p>
+                <p>Este projeto não possui fins lucrativos</p>
+                <p>Portanto todo o trabalho realizado pelos professores são voluntários</p>
             </div>
         </div>
         <header class="timeline-header">
-            <span class="tag is-medium is-primary">End</span>
+            <span class="tag is-medium is-primary">Aproveite!</span>
         </header>
     </div>
 
+    <div class="columns is-space is-space-lateral">
+        <div class="column">
+            <div class="card">
+                <div class="card-content">
+                    <p class="title">
+                        “There are two hard things in computer science: cache invalidation, naming things, and off-by-one errors.”
+                    </p>
+                    <p class="subtitle">
+                        Jeff Atwood
+                    </p>
+                </div>
+                <footer class="card-footer">
+                    <p class="card-footer-item">
+                        <span>
+                                      View on <a href="https://twitter.com/codinghorror/status/506010907021828096">Twitter</a>
+                                    </span>
+                    </p>
+                    <p class="card-footer-item">
+                        <span>
+                                      Share on <a href="#">Facebook</a>
+                                    </span>
+                    </p>
+                </footer>
+            </div>
+        </div>
+        <div class="column">
+            <div class="card">
+                <div class="card-content">
+                    <p class="title">
+                        “There are two hard things in computer science: cache invalidation, naming things, and off-by-one errors.”
+                    </p>
+                    <p class="subtitle">
+                        Jeff Atwood
+                    </p>
+                </div>
+                <footer class="card-footer">
+                    <p class="card-footer-item">
+                        <span>
+                                      View on <a href="https://twitter.com/codinghorror/status/506010907021828096">Twitter</a>
+                                    </span>
+                    </p>
+                    <p class="card-footer-item">
+                        <span>
+                                      Share on <a href="#">Facebook</a>
+                                    </span>
+                    </p>
+                </footer>
+            </div>
+        </div>
+        <div class="column">
+            <div class="card">
+                <div class="card-content">
+                    <p class="title">
+                        “There are two hard things in computer science: cache invalidation, naming things, and off-by-one errors.”
+                    </p>
+                    <p class="subtitle">
+                        Jeff Atwood
+                    </p>
+                </div>
+                <footer class="card-footer">
+                    <p class="card-footer-item">
+                        <span>
+                                      View on <a href="https://twitter.com/codinghorror/status/506010907021828096">Twitter</a>
+                                    </span>
+                    </p>
+                    <p class="card-footer-item">
+                        <span>
+                                      Share on <a href="#">Facebook</a>
+                                    </span>
+                    </p>
+                </footer>
+            </div>
+        </div>
+        <div class="column">
+            <div class="card">
+                <div class="card-content">
+                    <p class="title">
+                        “There are two hard things in computer science: cache invalidation, naming things, and off-by-one errors.”
+                    </p>
+                    <p class="subtitle">
+                        Jeff Atwood
+                    </p>
+                </div>
+                <footer class="card-footer">
+                    <p class="card-footer-item">
+                        <span>
+                                      View on <a href="https://twitter.com/codinghorror/status/506010907021828096">Twitter</a>
+                                    </span>
+                    </p>
+                    <p class="card-footer-item">
+                        <span>
+                                      Share on <a href="#">Facebook</a>
+                                    </span>
+                    </p>
+                </footer>
+            </div>
+        </div>
+    </div>
 
+    <!-- -->
 </body>
 
 </html>
