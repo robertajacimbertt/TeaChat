@@ -1,0 +1,24 @@
+.modal-content {
+    max-width: 650px !important;
+    padding: 50px !important;
+    background-color: white !important;
+}
+
+#cadastro-content {
+    border-left: gray solid 1px;
+}
+
+.is-botao-modal {
+    background-color: #4ABDAC;
+    color: white;
+    border: none;
+}
+
+
+/* .is-cadastro {
+    border-color: #4ABDAC !important;
+}
+
+.is-login {
+    border-color: #4ABDAC !important;
+} */

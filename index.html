@@ -6,10 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>TeaChat</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css">
-    <link rel="stylesheet" href="bulma-timeline.min.css">
+    <link rel="stylesheet" href="./style/bulma-timeline.min.css">
+    <link rel="stylesheet" href="./style/estilo.css">
     <script defer src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"></script>
-    <script src="jquery-3.3.1.min.js"></script>
-    <script src="index.js"></script>
+    <script src="./scripts/jquery-3.3.1.min.js"></script>
+    <script src="./scripts/index.js"></script>
 </head>
 
 <body>
@@ -38,7 +39,7 @@
     </nav>
 
     <section class="hero is-primary is-medium is-space">
-        <img class="imagemCapa" src="capa4.png">
+        <img class="imagemCapa" src="./imagens/capa4.png">
     </section>
 
     <div class="hero-foot">
@@ -121,7 +122,7 @@
                 <div class="card">
                     <div class="card-content">
                         <p class="title">
-                            <img src="matematica.png"> Matemática
+                            <img src="./imagens/matematica.png"> Matemática
                         </p>
                         <p class="subtitle">
                             Tire suas dúvidas de Matemática!
@@ -140,7 +141,7 @@
                 <div class="card">
                     <div class="card-content">
                         <p class="title">
-                            <img src="portugues.png"> Português
+                            <img src="./imagens/portugues.png"> Português
                         </p>
                         <p class="subtitle">
                             Tire suas dúvidas de Português!
@@ -159,7 +160,7 @@
                 <div class="card">
                     <div class="card-content">
                         <p class="title">
-                            <img src="history.png"> História
+                            <img src="./imagens/history.png"> História
                         </p>
                         <p class="subtitle">
                             Tire suas dúvidas de <br> História!
@@ -178,7 +179,7 @@
                 <div class="card">
                     <div class="card-content">
                         <p class="title">
-                            <img src="geografia.png"> Geografia
+                            <img src="./imagens/geografia.png"> Geografia
                         </p>
                         <p class="subtitle">
                             Tire suas dúvidas de Geografia!
@@ -200,7 +201,7 @@
                 <div class="card">
                     <div class="card-content">
                         <p class="title">
-                            <img src="fisica.jpg"> Física
+                            <img src="./imagens/fisica.jpg"> Física
                         </p>
                         <p class="subtitle">
                             Tire suas dúvidas de <br> Física!
@@ -219,7 +220,7 @@
                 <div class="card">
                     <div class="card-content">
                         <p class="title">
-                            <img src="quimica.png"> Química
+                            <img src="./imagens/quimica.png"> Química
                         </p>
                         <p class="subtitle">
                             Tire suas dúvidas de Química!
@@ -238,7 +239,7 @@
                 <div class="card">
                     <div class="card-content">
                         <p class="title">
-                            <img src="biologia.png"> Biologia
+                            <img src="./imagens/biologia.png"> Biologia
                         </p>
                         <p class="subtitle">
                             Tire suas dúvidas de Biologia!
@@ -257,7 +258,7 @@
                 <div class="card">
                     <div class="card-content">
                         <p class="title">
-                            <img src="literatura.png"> Literatura
+                            <img src="./imagens/literatura.png"> Literatura
                         </p>
                         <p class="subtitle">
                             Tire suas dúvidas de Literatura!
@@ -279,7 +280,7 @@
                 <div class="card">
                     <div class="card-content">
                         <p class="title">
-                            <img src="filosofia.png"> Filosofia
+                            <img src="./imagens/filosofia.png"> Filosofia
                         </p>
                         <p class="subtitle">
                             Tire suas dúvidas de Filosofia!
@@ -298,7 +299,7 @@
                 <div class="card">
                     <div class="card-content">
                         <p class="title">
-                            <img src="sociologia.png"> Sociologia
+                            <img src="./imagens/sociologia.png"> Sociologia
                         </p>
                         <p class="subtitle">
                             Tire suas dúvidas de Sociologia!
@@ -317,7 +318,7 @@
                 <div class="card">
                     <div class="card-content">
                         <p class="title">
-                            <img src="ingles.gif"> Inglês
+                            <img src="./imagens/ingles.gif"> Inglês
                         </p>
                         <p class="subtitle">
                             Tire suas dúvidas de <br> Inglês!
@@ -336,7 +337,7 @@
                 <div class="card">
                     <div class="card-content">
                         <p class="title">
-                            <img src="espanhol.png"> Espanhol
+                            <img src="./imagens/espanhol.png"> Espanhol
                         </p>
                         <p class="subtitle">
                             Tire suas dúvidas de Espanhol!
@@ -362,12 +363,114 @@
             </p>
         </div>
     </footer>
-
-    <div class="modal">
+    <div class="modal" id="modal-aluno">
         <div class="modal-background"></div>
         <div class="modal-content">
+            <div class="columns">
+                <div class="column">
+                    <p class="heading heading-bigger">Login</p>
+                    <div class="field">
+                        <div class="control">
+                            <input class="input  is-login" type="text" placeholder="Email">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="control">
+                            <input class="input   is-login" type="password" placeholder="Senha">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="control">
+                            <a class="input  button is-small is-fullwidth  is-botao-modal">Acessar</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="column">
+                    <p class="heading heading-bigger">Cadastro</p>
+                    <div class="field">
+                        <div class="control">
+                            <input class="input  is-cadastro " type="text" placeholder="Nome">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="control">
+                            <input class="input   is-cadastro" type="text" placeholder="Email">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="control">
+                            <input class="input   is-cadastro" type="password" placeholder="Senha">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="control">
+                            <input class="input   is-cadastro" type="password" placeholder="Confirmar Senha">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="control">
+                            <a class="input  button is-small is-fullwidth is-botao-modal">Cadastrar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <button class="modal-close is-large" aria-label="close"></button>
+        <button class="modal-close is-large" id="close-modal-aluno" aria-label="close"></button>
+    </div>
+
+    <div class="modal" id="modal-professor">
+        <div class="modal-background"></div>
+        <div class="modal-content">
+            <div class="columns">
+                <div class="column">
+                    <p class="heading heading-bigger">Login</p>
+                    <div class="field">
+                        <div class="control">
+                            <input class="input  is-login" type="text" placeholder="Email">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="control">
+                            <input class="input   is-login" type="password" placeholder="Senha">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="control">
+                            <a class="input  button is-small is-fullwidth  is-botao-modal">Acessar</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="column">
+                    <p class="heading heading-bigger">Cadastro</p>
+                    <div class="field">
+                        <div class="control">
+                            <input class="input  is-cadastro " type="text" placeholder="Nome">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="control">
+                            <input class="input   is-cadastro" type="text" placeholder="Email">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="control">
+                            <input class="input   is-cadastro" type="password" placeholder="Senha">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="control">
+                            <input class="input   is-cadastro" type="password" placeholder="Confirmar Senha">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="control">
+                            <a class="input  button is-small is-fullwidth is-botao-modal">Cadastrar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button class="modal-close is-large" id="close-modal-professor" aria-label="close"></button>
     </div>
 </body>
 
