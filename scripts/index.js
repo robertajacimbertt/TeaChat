@@ -18,4 +18,10 @@ $(document).ready(function() {
     $("#close-modal-professor").click(function() {
         $("#modal-professor").removeClass("is-active");
     });
+
+    $("#delete-notification").click(function() {
+        $("#notify").toggleClass("erroGeralInativo");
+        $("#notify").removeClass("erroGeralAtivo");
+    });
+
 });

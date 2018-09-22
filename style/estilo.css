@@ -1,6 +1,6 @@
 .modal-content {
     max-width: 650px !important;
-    padding: 50px !important;
+    padding: 65px !important;
     background-color: white !important;
 }
 
@@ -18,12 +18,27 @@
     visibility: hidden;
 }
 
+.erroGeralInativo{
+    visibility: hidden;
+}
+
+.erroGeralAtivo{
+    visibility: visible;
+}
+
 .erroAtivo{
     visibility: visible;
     color: red;
 }
 .checkbox{
     margin-right: 5px;
+}
+
+.notification{
+    position: absolute;
+    max-width: 500px;
+    left: 2%;
+    top: 65px;
 }
 
 

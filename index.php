@@ -16,14 +16,16 @@
 <body>
 
     <?php
-        ini_set('display_errors',1);
-        ini_set('display_startup_erros',1);
-        error_reporting(E_ALL);
+        //ini_set('display_errors',1);
+        //ini_set('display_startup_erros',1);
+        //error_reporting(E_ALL);
         $nomeErr = $emailErr = $senhaErr = $confirmaSenhaErr = $nisErr = $materiaErr = "";
         $isActiveAluno = $isActiveProfessor = "";
         $nome = $email = $senha = $confirmaSenha = $nis = "";
         $materiasDoProfessor = [];
         $classErrorInput = "erroInativo";
+        $classGeneralError = "erroGeralInativo";
+        $stringGeralError = "";
 
         $hostname = 'localhost';
         $dbuser = 'root';
@@ -82,7 +84,7 @@
                         $isActiveAluno = 'is-active';
                         $classErrorInput = "erroAtivo";
                     } else {
-                        $connection = mysqli_connect($hostname, $dbuser, $dbpass, $db);
+                       $connection = mysqli_connect($hostname, $dbuser, $dbpass, $db);
                         
                         if ($connection) {
                             $sqlBuscaAluno = "SELECT * FROM alunos where nome = '$nome' and email = '$email' and nis = '$nis' and senha = '$senha' ;";
@@ -94,15 +96,16 @@
                                 if($resultados){
                                     header('Location: ./chat.php');
                                 } else {
-                                    //mostrar erro geral
-                                    echo "Falhou na inclusao";
+                                    $stringGeralError = "Falha no cadastro";
+                                    $classGeneralError = "erroGeralAtivo";
                                 }
                             } else {
-                                echo "Já existe alguem cadastrado com esse nome";
+                                $stringGeralError = "Já existe um aluno cadastrado com estes dados";
+                                $classGeneralError = "erroGeralAtivo";
                             }
                         } else {
-                            //mostrar erro geral
-                            echo "<br/>não conectou no banco";
+                            $stringGeralError = "Não foi possíve conectar no banco";
+                            $classGeneralError = "erroGeralAtivo";
                         }   
                         mysqli_close($connection);
                     }
@@ -124,7 +127,6 @@
                         $connection = mysqli_connect($hostname, $dbuser, $dbpass, $db);
                         if ($connection) {
                             $buscaProfessor = "SELECT * FROM professores where nome = '$nome' and email = '$email' and senha = '$senha' ;";
-                            //mostrar erro geral
                             $results = mysqli_query($connection, $buscaProfessor);
                             $row = mysqli_fetch_row($results);
                             if(sizeof($row) <= 0){
@@ -144,17 +146,17 @@
                                     $resultadosM = mysqli_query($connection, $sqlM);
                                     header('Location: ./chat.php');
                                 } else {
-                                    //mostrar erro geral
-                                    echo "Falhou na inclusao";
+                                    $stringGeralError = "Falha no cadastro";
+                                    $classGeneralError = "erroGeralAtivo";
                                 }     
                             } else {
-                                //mostrar erro geral
-                                echo "já existe alguem cadastrado com esses dados";
+                                $stringGeralError = "Já existe um professor cadastrado com esses dados";
+                                $classGeneralError = "erroGeralAtivo";
                             }
                             
                         } else {
-                            //mostrar erro geral
-                            echo "<br/>não conectou no banco";
+                            $stringGeralError = "Não foi possível conectar no banco";
+                            $classGeneralError = "erroGeralAtivo";
                         }   
                         mysqli_close($connection);
                     }
@@ -665,6 +667,12 @@
         </div>
         <button class="modal-close is-large" id="close-modal-professor" aria-label="close"></button>
     </div>
+
+    <div class="notification is-danger <?=$classGeneralError?>" id="notify">
+        <button class="notification" id="delete-notification"></button>
+        <?=$stringGeralError?>
+    </div>
+
 </body>
 
 </html>
