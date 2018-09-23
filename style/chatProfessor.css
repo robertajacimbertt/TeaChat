@@ -1,0 +1,5 @@
+.js .toggle-box .content { display:none; }
+.toggle-box { border:1px solid #999; }
+.toggle { cursor:pointer; }
+.header { margin:0; padding:5px; background:#ccc; }
+.content { padding:5px }

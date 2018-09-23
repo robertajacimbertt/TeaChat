@@ -16,9 +16,9 @@
 <body>
 
     <?php
-        //ini_set('display_errors',1);
-        //ini_set('display_startup_erros',1);
-        //error_reporting(E_ALL);
+        ini_set('display_errors',1);
+        ini_set('display_startup_erros',1);
+        error_reporting(E_ALL);
         $nomeErr = $emailErr = $senhaErr = $confirmaSenhaErr = $nisErr = $materiaErr = "";
         $isActiveAluno = $isActiveProfessor = "";
         $nome = $email = $senha = $confirmaSenha = $nis = "";
@@ -26,6 +26,7 @@
         $classErrorInput = "erroInativo";
         $classGeneralError = "erroGeralInativo";
         $stringGeralError = "";
+        $loginAlunoErr = $loginProfessorErr = "";
 
         $hostname = 'localhost';
         $dbuser = 'root';
@@ -104,7 +105,7 @@
                                 $classGeneralError = "erroGeralAtivo";
                             }
                         } else {
-                            $stringGeralError = "Não foi possíve conectar no banco";
+                            $stringGeralError = "Não foi possível conectar no banco";
                             $classGeneralError = "erroGeralAtivo";
                         }   
                         mysqli_close($connection);
@@ -133,18 +134,18 @@
                                 $insereProfessor = "INSERT INTO professores(nome, email, senha) VALUES('$nome', '$email', '$senha');";
                                 $resultadosP = mysqli_query($connection, $insereProfessor);
                                 if($resultadosP){
-                                    $buscaId = "SELECT id FROM professores where nome = '$nome' and email = '$email' and senha = '$senha' ;";
+                                    $buscaId = "SELECT idProfessor FROM professores where nome = '$nome' and email = '$email' and senha = '$senha' ;";
                                     $resultadoId = mysqli_query($connection, $buscaId);
-                                    //falta buscar o ID do professor
-
+                                    $idProfessor = mysqli_fetch_assoc($resultadoId);
                                     $sqlM = "INSERT INTO materiaProfessor(idProfessor, idMateria) VALUES";
+                                    $id = $idProfessor["idProfessor"];
                                     for($i=0;$i<sizeof($materiasDoProfessor);$i++){
-                                        $sqlM = $sqlM."('3', '$materiasDoProfessor[$i]'),";
+                                        $sqlM = $sqlM."('$id', '$materiasDoProfessor[$i]'),";
                                     }
                                     $size = strlen($sqlM);
                                     $sqlM = substr_replace($sqlM, ';', -1);
                                     $resultadosM = mysqli_query($connection, $sqlM);
-                                    header('Location: ./chat.php');
+                                    header('Location: ./chat.php?id='.$id."&nome=".$nome);
                                 } else {
                                     $stringGeralError = "Falha no cadastro";
                                     $classGeneralError = "erroGeralAtivo";
@@ -153,7 +154,6 @@
                                 $stringGeralError = "Já existe um professor cadastrado com esses dados";
                                 $classGeneralError = "erroGeralAtivo";
                             }
-                            
                         } else {
                             $stringGeralError = "Não foi possível conectar no banco";
                             $classGeneralError = "erroGeralAtivo";
@@ -162,7 +162,58 @@
                     }
                 }
             }
+        }
 
+        if(isset($_POST['login-aluno'])){
+            if (empty($_POST["email"]) or empty($_POST["senha"])) {
+                $loginAlunoErr = "Insira email e senha nos formatos válidos";
+                $isActiveAluno = 'is-active';
+                $classErrorInput = "erroAtivo";
+            } else {
+                $email = test_input($_POST["email"]);
+                $senha = test_input($_POST["senha"]);
+                if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                    $loginAlunoErr = "Formato de email inválido";
+                    $isActiveAluno = 'is-active';
+                    $classErrorInput = "erroAtivo";
+                } else {
+                    $connection = mysqli_connect($hostname, $dbuser, $dbpass, $db);
+                    if($connection){
+                        $sql = "SELECT * FROM alunos where email = '$email' and senha = '$senha' ;";
+                        $resultado = mysqli_query($connection, $sql);
+                        $row = mysqli_fetch_assoc($resultado);
+                    } else {
+                        $loginAlunoErr = "Não foi possível efetuar o login. Por favor tente novamente mais tarde.";
+                        $isActiveAluno = 'is-active';
+                        $classErrorInput = "erroAtivo";
+                    }
+                }
+            }
+        } else if(isset($_POST['login-professor'])){
+            if (empty($_POST["email"]) or empty($_POST["senha"])) {
+                $loginProfessorErr = "Insira email e senha nos formatos válidos";
+                $isActiveProfessor = 'is-active';
+                $classErrorInput = "erroAtivo";
+            } else {
+                $email = test_input($_POST["email"]);
+                $senha = test_input($_POST["senha"]);
+                if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                    $loginProfessorErr = "Formato de email inválido";
+                    $isActiveProfessor = 'is-active';
+                    $classErrorInput = "erroAtivo";
+                } else {
+                    $connection = mysqli_connect($hostname, $dbuser, $dbpass, $db);
+                    if($connection){
+                        $sql = "SELECT * FROM professores where email = '$email' and senha = '$senha' ;";
+                        $resultado = mysqli_query($connection, $sql);
+                        $row = mysqli_fetch_assoc($resultado);
+                    } else {
+                        $loginProfessorErr = "Não foi possível efetuar o login. Por favor tente novamente mais tarde.";
+                        $isActiveProfessor = 'is-active';
+                        $classErrorInput = "erroAtivo";
+                    }
+                }
+            }
         }
 
         function test_input($data) {
@@ -223,7 +274,7 @@
         </header>
         <div class="timeline-item is-warning">
             <div class="timeline-marker is-warning is-image is-32x32">
-                <img src="http://bulma.io/images/placeholders/32x32.png">
+                <!--<img src="http://bulma.io/images/placeholders/32x32.png">-->
             </div>
             <div class="timeline-content">
                 <p class="heading heading-bigger">O que é o TeaChat?</p>
@@ -233,7 +284,7 @@
         </div>
         <div class="timeline-item is-warning">
             <div class="timeline-marker is-warning is-image is-32x32">
-                <img src="http://bulma.io/images/placeholders/32x32.png">
+                <!--<img src="http://bulma.io/images/placeholders/32x32.png">-->
             </div>
             <div class="timeline-content">
                 <p class="heading heading-bigger">Para os alunos</p>
@@ -242,7 +293,7 @@
         </div>
         <div class="timeline-item is-primary">
             <div class="timeline-marker is-primary is-image is-32x32">
-                <img src="http://bulma.io/images/placeholders/32x32.png">
+                <!--<img src="http://bulma.io/images/placeholders/32x32.png">-->
             </div>
             <div class="timeline-content">
                 <p class="heading heading-bigger">Para os professores</p>
@@ -253,7 +304,7 @@
         </div>
         <div class="timeline-item is-danger">
             <div class="timeline-marker is-danger is-image is-32x32">
-                <img src="http://bulma.io/images/placeholders/32x32.png">
+                <!--<img src="http://bulma.io/images/placeholders/32x32.png">-->
             </div>
             <div class="timeline-content">
                 <p class="heading heading-bigger">Como usar?</p>
@@ -264,7 +315,7 @@
         </div>
         <div class="timeline-item is-danger">
             <div class="timeline-marker is-danger is-image is-32x32">
-                <img src="http://bulma.io/images/placeholders/32x32.png">
+                <!--<img src="http://bulma.io/images/placeholders/32x32.png">-->
             </div>
             <div class="timeline-content">
                 <p class="heading heading-bigger">Não pague nada ;)</p>
@@ -528,22 +579,25 @@
         <div class="modal-content">
             <div class="columns">
                 <div class="column">
-                    <p class="heading heading-bigger">Login</p>
-                    <div class="field">
-                        <div class="control">
-                            <input class="input  is-login" type="text" placeholder="Email">
+                    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
+                        <p class="heading heading-bigger">Login</p>
+                            <small class="<?=$classErrorInput?>"><?=$loginAlunoErr?></small>
+                        <div class="field">
+                            <div class="control">
+                                <input class="input  is-login " type="text" name="email" placeholder="Email">
+                            </div>
                         </div>
-                    </div>
-                    <div class="field">
-                        <div class="control">
-                            <input class="input   is-login" type="password" placeholder="Senha">
+                        <div class="field">
+                            <div class="control">
+                                <input class="input  is-login " type="password" name="senha" placeholder="Senha">
+                            </div>
                         </div>
-                    </div>
-                    <div class="field">
-                        <div class="control">
-                            <a class="input  button is-small is-fullwidth  is-botao-modal">Acessar</a>
+                        <div class="field">
+                            <div class="control">
+                                <input class="input  button is-small is-fullwidth is-botao-modal" type="submit" name="login-aluno" value="Acessar">
+                            </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
                 <div class="column">
                     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
@@ -595,22 +649,25 @@
         <div class="modal-content">
             <div class="columns">
                 <div class="column">
-                    <p class="heading heading-bigger">Login</p>
-                    <div class="field">
-                        <div class="control">
-                            <input class="input  is-login" type="text" placeholder="Email">
+                    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
+                        <p class="heading heading-bigger">Login</p>
+                            <small class="<?=$classErrorInput?>"><?=$loginProfessorErr?></small>
+                        <div class="field">
+                            <div class="control">
+                                <input class="input  is-login " type="text" name="email" placeholder="Email">
+                            </div>
                         </div>
-                    </div>
-                    <div class="field">
-                        <div class="control">
-                            <input class="input   is-login" type="password" placeholder="Senha">
+                        <div class="field">
+                            <div class="control">
+                                <input class="input  is-login " type="password" name="senha" placeholder="Senha">
+                            </div>
                         </div>
-                    </div>
-                    <div class="field">
-                        <div class="control">
-                            <a class="input  button is-small is-fullwidth  is-botao-modal">Acessar</a>
+                        <div class="field">
+                            <div class="control">
+                                <input class="input  button is-small is-fullwidth is-botao-modal" type="submit" name="login-professor" value="Acessar">
+                            </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
                 <div class="column">
                 <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
