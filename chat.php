@@ -40,12 +40,18 @@
                 $i++;
             }
             $alunos = array_unique($aux);
-            print_r($alunos);
+            //var_dump($alunos);
+  
+            //foreach ($alunos as &$chat) {
+            //    echo "<div class='toggle-box'><h3 class='toggle header'><a  href='#'>$chat</a></h3><div class='content'><strong>Product Features:</strong><br /> <ul><li>Feature 1</li><li>Feature 1</li><li>Feature 1</li></ul></div></div>";
+                
+            //}
+            
 
         } else {
             echo "Nao foi possivel acessar o banco";
         }
-    ?>    
+    ?>   
 
     <script>
         (function($) {
@@ -64,26 +70,20 @@
 
     </script>
 
-    <div class="toggle-box">
-        <h3 class="toggle header"><a  href="#">Heading</a></h3>
-        <div class="content"><strong>Product Features:</strong><br />
-            <ul>
-                <li>Feature 1</li>
-                <li>Feature 1</li>
-                <li>Feature 1</li>
-            </ul>
-        </div>
-    </div> 
-    <div class="toggle-box">
-        <h3 class="toggle header"><a  href="#">Heading</a></h3>
-        <div class="content"><strong>Product Features:</strong><br />
-            <ul>
-                <li>Feature 1</li>
-                <li>Feature 1</li>
-                <li>Feature 1</li>
-            </ul>
-        </div>
-    </div> 
+    <?php foreach ($alunos as &$chat){ ?>
+        <div class="toggle-box">
+            <h3 class="toggle header"><a  href="#">Chat com <?=$chat?></a></h3>
+            <div class="content"><br />
+                <ul>
+                    <?php foreach ($alunos as &$chat){ ?>
+                        <li>Feature 1</li>
+                        <li>Feature 1</li>
+                        <li>Feature 1</li>
+                    <?php } ?>
+                </ul>
+            </div>
+        </div> 
+    <?php } ?>
 
 </body>
 </html>
