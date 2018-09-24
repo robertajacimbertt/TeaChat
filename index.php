@@ -95,7 +95,7 @@
                                 $sql = "INSERT INTO alunos(nome, email, nis, senha) VALUES('$nome', '$email', '$nis', '$senha')";
                                 $resultados = mysqli_query($connection, $sql);
                                 if($resultados){
-                                    header('Location: ./chat.php');
+                                    header('Location: ./chatProfessor.php');
                                 } else {
                                     $stringGeralError = "Falha no cadastro";
                                     $classGeneralError = "erroGeralAtivo";
@@ -145,7 +145,7 @@
                                     $size = strlen($sqlM);
                                     $sqlM = substr_replace($sqlM, ';', -1);
                                     $resultadosM = mysqli_query($connection, $sqlM);
-                                    header('Location: ./chat.php?id='.$id."&nome=".$nome);
+                                    header('Location: ./chatProfessor.php?id='.$id."&nome=".$nome);
                                 } else {
                                     $stringGeralError = "Falha no cadastro";
                                     $classGeneralError = "erroGeralAtivo";
