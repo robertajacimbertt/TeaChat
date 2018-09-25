@@ -782,3 +782,24 @@
     background-color: #FC4A1A;
     padding-bottom: 100px;
 }
+
+.h1{
+     font-size: 40pt;
+     text-align: center;
+     padding-bottom: 20px;
+     padding-top: 20px;
+     color: #fff;
+}
+
+.h2{
+     font-size: 20pt;
+     text-align: center;
+     padding-bottom: 20px;
+     color: #fff;
+
+}
+
+.cabecalho{
+    background-color: #FC4A1A;
+    padding-bottom: 60px;
+}

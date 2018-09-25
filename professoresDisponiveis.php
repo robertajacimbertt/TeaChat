@@ -1,5 +1,8 @@
 <?php
     include "bancoDeDados.php";
+    $idAluno = $_GET["ia"];
+    $idMateria = $_GET["id"];
+    $nomeAluno = $_GET["na"];
 ?>
 
 <!DOCTYPE html>
@@ -48,25 +51,22 @@
         $dbpass = '123';
         $db = 'teachat';
 
-        $idProfessor = $_GET["id"];
-        $nomeProfessor = $_GET["nome"];
-        $alunos = [];
+        $professores = [];
 
         $connection = mysqli_connect($hostname, $dbuser, $dbpass, $db);
 
         if($connection){
-            $sql = "SELECT idAluno, nomeAluno FROM chat where nomeProfessor = '$nomeProfessor' and id_de = '$idProfessor' or id_para = '$idProfessor' group by idAluno, nomeAluno;";
-            $resultadosAlunos = mysqli_query($connection, $sql);
+            $sql = "SELECT * FROM professores inner join materiaProfessor on professores.idProfessor = materiaProfessor.idProfessor where materiaProfessor.idMateria = '$idMateria';";
+            $resultadosProfessores = mysqli_query($connection, $sql);
             $i = 0;
-            while ($row = $resultadosAlunos->fetch_assoc()) {
-                $alunos[$i]["nomeAluno"] = $row["nomeAluno"];
-                $alunos[$i]["idAluno"] = $row["idAluno"];
+            while ($row = $resultadosProfessores->fetch_assoc()) {
+                $professores[$i]["nome"] = $row["nome"];
+                $professores[$i]["idProfessor"] = $row["idProfessor"];
                 $i++;
             }
-            if(sizeof($alunos) <= 0){
+            if(sizeof($professores) <= 0){
                 echo "Voce ainda nao possui mensagens";
             } 
-            
         } else {
             echo "Nao foi possivel acessar o banco";
         }
@@ -86,23 +86,16 @@
         })(jQuery);
     </script>
 
-    <?php foreach ($alunos as &$chat){ ?>
+    <?php foreach ($professores as &$chat){ ?>
         <div class="toggle-box">
-            <h3 class="toggle header"><a  href="#">Chat com <?=$chat['nomeAluno']?></a></h3>
+            <h3 class="toggle header"><a  href="#">Chat com <?=$chat['nome']?></a></h3>
             <div class="content">
                 <ul>
                     <?php 
-                        $idAluno = $chat['idAluno'];
-                        $nomeAluno = $chat['nomeAluno'];
-                        $stringGet = "chat.php?ia=".$idAluno."&na=".$nomeAluno."&ip=".$idProfessor."&np=".$nomeProfessor;
-                       // $result = file_get_contents('http://exemplo/make_action.php', null, $context);
-
-                        $sqlConversa = "SELECT * FROM chat where idAluno = '$idAluno' and  (nomeProfessor = '$nomeProfessor' and id_de = '$idProfessor' or nomeProfessor = '$nomeProfessor' and id_para = '$idProfessor') limit 10;";
-                        $conversas =  mysqli_query($connection, $sqlConversa);
-                        while ($mensagem = $conversas->fetch_assoc()) { ?>
-                            <li><?=$mensagem["mensagem"]?></li>
-
-                    <?php } ?>
+                        $nomeProfessor = $chat['nome'];
+                        $idProfessor = $chat['idProfessor'];
+                        $stringGet = "chatAluno.php?ia=".$idAluno."&na=".$nomeAluno."&ip=".$idProfessor."&np=".$nomeProfessor;
+                         ?>
                 </ul>
                 <form name="formConversa" action=<?=$stringGet?> method="POST">
                     <input type="submit" name=<?=$idAluno?> />

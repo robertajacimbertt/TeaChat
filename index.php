@@ -95,7 +95,13 @@
                                 $sql = "INSERT INTO alunos(nome, email, nis, senha) VALUES('$nome', '$email', '$nis', '$senha')";
                                 $resultados = mysqli_query($connection, $sql);
                                 if($resultados){
-                                    header('Location: ./chatProfessor.php');
+
+                                    $buscaId = "SELECT idAluno FROM alunos where nome = '$nome' and email = '$email' and senha = '$senha' ;";
+                                    $resultadoId = mysqli_query($connection, $buscaId);
+                                    $idAluno = mysqli_fetch_assoc($resultadoId);
+                                    $id = $idAluno["idAluno"];
+
+                                    header('Location: ./materias.php?id='.$id."&nome=".$nome);
                                 } else {
                                     $stringGeralError = "Falha no cadastro";
                                     $classGeneralError = "erroGeralAtivo";
@@ -182,6 +188,19 @@
                         $sql = "SELECT * FROM alunos where email = '$email' and senha = '$senha' ;";
                         $resultado = mysqli_query($connection, $sql);
                         $row = mysqli_fetch_assoc($resultado);
+
+                        $buscaId = "SELECT idAluno FROM alunos where email = '$email' and senha = '$senha' ;";
+                        $resultadoId = mysqli_query($connection, $buscaId);
+                        $idAluno = mysqli_fetch_assoc($resultadoId);
+                        $id = $idAluno["idAluno"];
+
+                        $buscaNome = "SELECT nome FROM alunos where email = '$email' and senha = '$senha' ;";
+                        $resultadoNome = mysqli_query($connection, $buscaNome);
+                        $nomeAluno = mysqli_fetch_assoc($resultadoNome);
+                        $nome = $nomeAluno["nome"];
+
+                        header('Location: ./materias.php?id='.$id."&nome=".$nome);
+                        
                     } else {
                         $loginAlunoErr = "Não foi possível efetuar o login. Por favor tente novamente mais tarde.";
                         $isActiveAluno = 'is-active';
@@ -207,6 +226,19 @@
                         $sql = "SELECT * FROM professores where email = '$email' and senha = '$senha' ;";
                         $resultado = mysqli_query($connection, $sql);
                         $row = mysqli_fetch_assoc($resultado);
+
+                        $buscaId = "SELECT idProfessor FROM professores where email = '$email' and senha = '$senha' ;";
+                        $resultadoId = mysqli_query($connection, $buscaId);
+                        $idProfessor = mysqli_fetch_assoc($resultadoId);
+                        $id = $idProfessor["idProfessor"];
+
+                        $buscaNome = "SELECT nome FROM professores where email = '$email' and senha = '$senha' ;";
+                        $resultadoNome = mysqli_query($connection, $buscaNome);
+                        $nomeProfessor = mysqli_fetch_assoc($resultadoNome);
+                        $nome = $nomeProfessor["nome"];
+
+                        header('Location: ./chatProfessor.php?id='.$id."&nome=".$nome);
+
                     } else {
                         $loginProfessorErr = "Não foi possível efetuar o login. Por favor tente novamente mais tarde.";
                         $isActiveProfessor = 'is-active';

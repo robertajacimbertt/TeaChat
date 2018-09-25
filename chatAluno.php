@@ -1,12 +1,11 @@
 <?php
     include "bancoDeDados.php";
-
     $idAluno = $_GET["ia"];
     $nomeAluno = $_GET["na"];
     $idProfessor = $_GET["ip"];
     $nomeProfessor = $_GET["np"];
-    $stringGet = "chatParte2.php?ia=".$idAluno."&na=".$nomeAluno."&ip=".$idProfessor."&np=".$nomeProfessor;
-    $stringGetChat = "chat.php?ia=".$idAluno."&na=".$nomeAluno."&ip=".$idProfessor."&np=".$nomeProfessor;
+    $stringGet = "chatParte2Aluno.php?ia=".$idAluno."&na=".$nomeAluno."&ip=".$idProfessor."&np=".$nomeProfessor;
+    $stringGetChat = "chatAluno.php?ia=".$idAluno."&na=".$nomeAluno."&ip=".$idProfessor."&np=".$nomeProfessor;
 ?>
 
 <!DOCTYPE html>
@@ -49,8 +48,7 @@
             $nomeProfessor = $_GET["np"];
             if(isset($_POST['enviar'])){
                 $mensagem = $_POST['mensaje'];
-                $consulta = "INSERT INTO chat (id_de, id_para, mensagem, nomeAluno, nomeProfessor, idAluno) VALUES 
-                ('$idProfessor', '$idAluno', '$mensagem', '$nomeAluno', '$nomeProfessor', '$idAluno');";
+                $consulta = "INSERT INTO chat (id_de, id_para, mensagem, nomeAluno, nomeProfessor, idAluno) VALUES ('$idAluno', '$idProfessor', '$mensagem', '$nomeAluno', '$nomeProfessor', '$idAluno');";
                 $executar = $conection->query($consulta);
                 if($executar){
                     echo "<embed loop='false' src='beep.mp3' hidden='true' autoplay='true'>";
